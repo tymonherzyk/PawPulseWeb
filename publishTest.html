@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Projects</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://fonts.googleapis.com/css?family=Caveat|Caveat+Brush|Roboto+Mono:400,500,700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="style.css">
+		<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.20.2.js"></script>
+		<script src="https://pubnub.github.io/eon/v/eon/1.0.0/eon.js"></script>
+		<link rel="stylesheet" href="https://pubnub.github.io/eon/v/eon/1.0.0/eon.css"/>
+		
+		<!-- Initializing PubNub -->
+		<script>
+			var pubnub = new PubNub({
+			publishKey: "pub-c-f6f91f16-a809-447a-9179-f2af45ec65f1", //PawPulse publish key
+			subscribeKey: "sub-c-0ae8a45a-5581-11ea-b828-26d2a984a2e5",//PawPulse subscribe key
+			ssl: true
+			});
+		</script> 
+	</head>
+	<body>
+		<script>
+			pubnub.publish(
+				{
+					message: {
+					"text": "160",
+					"eon":{"BPM":180}
+					},
+					channel: 'bpm',
+					sendByPost: false, // true to send via POST
+					storeInHistory: false, //override default storage options
+					meta: {
+						"cool": "meta"
+					} // publish extra meta with the request
+				},
+				function (status, response) {
+					// handle status, response
+				}
+			);
+			
+			pubnub.publish(
+				{
+					message: {
+					"text": "2000",
+					"eon":{"Steps":2000}
+					},
+					channel: 'step',
+					sendByPost: false, // true to send via POST
+					storeInHistory: false, //override default storage options
+					meta: {
+						"cool": "meta"
+					} // publish extra meta with the request
+				},
+				function (status, response) {
+					// handle status, response
+				}
+			);
+</script>
+</html>
